@@ -1,0 +1,17 @@
+out
+build
+gant-build
+lib
+.classpath
+.project
+.gradle
+.settings
+gradle/
+gradlew*
+.idea
+*.ipr
+*.iws
+*.iml
+/bin/
+*.swp
+
