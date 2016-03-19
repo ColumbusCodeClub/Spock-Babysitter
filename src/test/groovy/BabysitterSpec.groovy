@@ -11,23 +11,39 @@ class BabysitterSpec extends Specification {
     @Unroll
     def "babysitter gets paid #expectedCashReceived when starting at #start and finishing at #end before bedtime"() {
         setup:
-            job = new BabysitterJob(bedTime: 12)
+            job = new BabysitterJob(23)
 
         expect:
             job.getCash(start, end) == expectedCashReceived
 
         where:
             start | end || expectedCashReceived
-            5     | 6   || 12
-            5     | 7   || 24
+            17    | 18  || 12
+            17    | 19  || 24
     }
 
     def "babysitter gets paid 8 dollas for 1 hour of work after bedtime"() {
         setup:
-            job = new BabysitterJob(bedTime: 5)
+            job = new BabysitterJob(17)
 
         expect:
-            job.getCash(5, 6) == 8
+            job.getCash(17, 18) == 8
+    }
+
+    def "babysitter gets paid for one hour before bedtime and one hour after bedtime"() {
+        setup:
+            job = new BabysitterJob(17)
+
+        expect:
+            job.getCash(16, 18) == 20
+    }
+
+    def "babysitter gets paid for one hour after midnight"() {
+        setup:
+        job = new BabysitterJob(0)
+
+        expect:
+        job.getCash(0, 1) == 16
     }
 
 }
