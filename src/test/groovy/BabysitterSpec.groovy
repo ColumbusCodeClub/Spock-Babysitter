@@ -46,4 +46,11 @@ class BabysitterSpec extends Specification {
         job.getCash(0, 1) == 16
     }
 
+    def "babysitter gets paid for one hour before and after midnight"() {
+        setup:
+        job = new BabysitterJob(21)
+
+        expect:
+        job.getCash(23, 1) == 24f
+    }
 }
